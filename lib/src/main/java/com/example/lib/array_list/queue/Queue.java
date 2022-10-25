@@ -46,7 +46,7 @@ public class Queue<E> {
 
     // 出队
     public E deQueue() {
-        return queue.remove(queue.size()-1);
+        return queue.remove(0);
     }
 
     //获取队列的头元素

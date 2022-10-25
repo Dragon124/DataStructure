@@ -1,4 +1,4 @@
-package com.example.lib.array_list.tree;
+package com.example.lib.array_list.tree.bean;
 
 /**
  * Created by K on 2022/10/21
@@ -6,15 +6,13 @@ package com.example.lib.array_list.tree;
  * other:
  */
 public class TreeNode<E> {
-    E element;
-    TreeNode<E> left;
-    TreeNode<E> right;
-    TreeNode<E> parent;
+    public E element;
+    public TreeNode<E> left;
+    public TreeNode<E> right;
+    public TreeNode<E> parent;
 
-    TreeNode() {
-    }
 
-    TreeNode(E element) {
+    public TreeNode(E element) {
         this.element = element;
     }
 
@@ -39,6 +37,6 @@ public class TreeNode<E> {
 
     @Override
     public String toString() {
-        return element +"P"+ parent.element ;
+        return element + "P" + parent.element;
     }
 }

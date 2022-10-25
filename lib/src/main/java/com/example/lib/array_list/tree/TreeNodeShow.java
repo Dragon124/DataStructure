@@ -1,5 +1,8 @@
 package com.example.lib.array_list.tree;
 
+import com.example.lib.array_list.tree.bean.AVLNode;
+import com.example.lib.array_list.tree.bean.TreeNode;
+
 /**
  * Created by K on 2022/10/21
  * function:
@@ -17,9 +20,11 @@ public class TreeNodeShow {
         if (currNode == null) return;
         // 先将当前节点保存到二维数组中
         String parent = "";
-        if (currNode.parent != null) {
-            parent += "_" + currNode.parent.element;
-        }
+        //显示父类
+//        if (currNode.parent != null) {
+//            parent += "_" + currNode.parent.element;
+//        }
+        parent += "_" + ((AVLNode)currNode).height;
         res[rowIndex][columnIndex] = String.valueOf(currNode.element + parent);
 
         // 计算当前位于树的第几层

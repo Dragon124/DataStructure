@@ -44,7 +44,7 @@ public class Stack<E> {
 
     //获取栈顶元素
     public E top() {
-        return arrayList.get(size);
+        return arrayList.get(size-1);
     }
 
     // 清空

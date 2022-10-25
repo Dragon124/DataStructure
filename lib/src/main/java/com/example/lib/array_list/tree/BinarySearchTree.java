@@ -1,5 +1,7 @@
 package com.example.lib.array_list.tree;
 
+import com.example.lib.array_list.tree.bean.TreeNode;
+
 /**
  * Created by K on 2022/10/21
  * function:
@@ -9,7 +11,7 @@ public class BinarySearchTree<E> extends BinaryTree<E> {
     public void add(E element) {
         size++;
         if (root == null) {
-            root = new TreeNode<>(element);
+            root = createNode(element, null);
             return;
         }
         TreeNode<E> currentNode = root;
@@ -27,12 +29,14 @@ public class BinarySearchTree<E> extends BinaryTree<E> {
             }
         }
         if (compare < 0) {
-            parentNode.left = new TreeNode<>(element, parentNode);
+            parentNode.left = createNode(element, parentNode);
+            addLater(parentNode.left);
         } else if (compare == 0) {
             size--;
             parentNode.element = element;
         } else {
-            parentNode.right = new TreeNode<>(element, parentNode);
+            parentNode.right = createNode(element, parentNode);
+            addLater(parentNode.right);
         }
     }
 
@@ -89,4 +93,10 @@ public class BinarySearchTree<E> extends BinaryTree<E> {
         return null;
     }
 
+    protected TreeNode<E> createNode(E element, TreeNode<E> parent) {
+        return new TreeNode<E>(element, parent);
+    }
+
+    protected void addLater(TreeNode<E> element) {
+    }
 }
