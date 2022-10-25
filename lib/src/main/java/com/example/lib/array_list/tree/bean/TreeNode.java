@@ -28,11 +28,22 @@ public class TreeNode<E> {
         this.parent = parent;
     }
 
+    //是否是叶子结点
     public boolean isLeaf() {
         if (right == null && left == null) {
             return true;
         }
         return false;
+    }
+
+    //是否是左子树
+    public boolean isLeftTree() {
+        return parent != null && parent.left == this;
+    }
+
+    //是否是右子树
+    public boolean isRightTree() {
+        return parent != null && parent.right == this;
     }
 
     @Override

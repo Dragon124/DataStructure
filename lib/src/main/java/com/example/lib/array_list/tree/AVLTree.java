@@ -18,44 +18,82 @@ public class AVLTree<E> extends BinarySearchTree<E> {
     @Override
     protected void addLater(TreeNode<E> element) {
         while ((element = element.parent) != null) {
-            int balance = ((AVLNode<E>) element).getBalance();
-            if (Math.abs(balance) < 2) {
+            if (isBalance(element)) {
                 upHeight(element);
             } else {
-                replyHeight((AVLNode<E>) element, balance);
+                replyHeight((AVLNode<E>) element);
+                break;
             }
         }
     }
 
 
-    private void replyHeight(AVLNode<E> node, int balance) {
-        if (balance > 0) {//左
-            if (((AVLNode) node.left).getBalance() < 0) {
-                rightRotate(node.left);
+    private void replyHeight(AVLNode<E> ground) {
+        AVLNode parent = ground.tallerChild();
+        AVLNode child = parent.tallerChild();
+        if (parent.isLeftTree()) {
+            if (child.isRightTree()) {//LR
+                leftRotate(parent);
             }
-            leftRotate(node);
-            upHeight(node);
-        } else {//右
-            if (((AVLNode) node.right).getBalance() > 0) {
-                leftRotate(node.right);
-                System.out.println("右右");
+            rightRotate(ground);
+        }
+        if (parent.isRightTree()) {
+            if (child.isLeftTree()) {//RL
+                rightRotate(parent);
             }
-            System.out.println("右");
-            rightRotate(node);
+            leftRotate(ground);
         }
     }
 
-    private void leftRotate(TreeNode<E> node) {
-        TreeNode parentNode = node.parent;
-        TreeNode belowNode = node.left;
-        belowNode.parent = parentNode;
+    private void leftRotate(TreeNode<E> ground) {
+        TreeNode parent = ground.right;
+        ground.right = parent.left;
+        parent.left = ground;
 
+        parent.parent = ground.parent;
+        if (ground.isLeftTree()) {
+            ground.parent.left = parent;
+        } else if (ground.isRightTree()) {
+            ground.parent.right = parent;
+        } else {
+            root = parent;
+            parent.parent = null;
+        }
+
+        if (ground.right != null) {
+            ground.right.parent = ground;
+        }
+
+        ground.parent = parent;
+
+        upHeight(ground);
+        upHeight(parent);
     }
 
-    private void rightRotate(TreeNode<E> node) {
-        TreeNode parentNode = node.parent;
-        TreeNode belowNode = node.right;
+    private void rightRotate(TreeNode<E> ground) {
+        TreeNode parent = ground.left;
+        ground.left = parent.right;
+        parent.right = ground;
 
+        parent.parent = ground.parent;
+        if (ground.isRightTree()) {
+            ground.parent.right = parent;
+        } else if (ground.isLeftTree()) {
+            ground.parent.left = parent;
+        } else {
+            root = parent;
+            parent.parent = null;
+        }
+
+        ground.parent = parent;
+
+        upHeight(ground);
+        upHeight(parent);
+    }
+
+    //该节点是否平衡
+    private boolean isBalance(TreeNode<E> element) {
+        return Math.abs(((AVLNode) element).getBalance()) <= 1;
     }
 
     public void upHeight(TreeNode node) {

@@ -6,6 +6,7 @@ package com.example.lib.array_list.tree.bean;
  * other:
  */
 public class AVLNode<E> extends TreeNode<E> {
+    //二叉树高度
     public int height = 1;
 
     public AVLNode(E element) {
@@ -20,9 +21,28 @@ public class AVLNode<E> extends TreeNode<E> {
         super(element, left, right, parent);
     }
 
+    //获取平衡因子
     public int getBalance() {
         int leftHeight = left == null ? 0 : ((AVLNode) left).height;
         int rightHeight = right == null ? 0 : ((AVLNode) right).height;
         return leftHeight - rightHeight;
     }
+
+    public AVLNode<E> tallerChild() {
+        int leftHeight = left == null ? 0 : ((AVLNode) left).height;
+        int rightHeight = right == null ? 0 : ((AVLNode) right).height;
+        if (leftHeight > rightHeight) {
+            return (AVLNode<E>) left;
+        }
+        if (leftHeight < rightHeight) {
+            return (AVLNode<E>) right;
+        }
+
+        if (isLeftTree()) {
+            return (AVLNode<E>) left;
+        } else {
+            return (AVLNode<E>) right;
+        }
+    }
+
 }

@@ -10,7 +10,7 @@ import com.example.lib.array_list.tree.AVLTree;
 public class main {
     public static void main(String[] args) {
         AVLTree<Integer> avlTree = new AVLTree<>();
-        for (int i = 3; i > 0; i--) {
+        for (int i = 1; i <20; i++) {
             avlTree.add(i);
         }
         avlTree.show();
