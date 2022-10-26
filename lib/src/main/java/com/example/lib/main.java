@@ -13,6 +13,11 @@ public class main {
         for (int i = 1; i <20; i++) {
             avlTree.add(i);
         }
+        avlTree.remove(1);
+        avlTree.remove(2);
+        avlTree.remove(15);
+        avlTree.remove(13);
+        avlTree.remove(14);
         avlTree.show();
     }
 }

@@ -45,52 +45,48 @@ public class BinarySearchTree<E> extends BinaryTree<E> {
         if (removeNode == null) {
             return;
         }
-        if (removeNode == root) {
-            clear();
-            return;
+        //度为2的节点
+        if (removeNode.hasTwoChild()) {
+            //找到后继节点
+            TreeNode<E> node = succeed(removeNode);
+            //把后继节点覆盖到度为2的节点
+            removeNode.element = node.element;
+            //删除后继节点
+            removeNode = node;
         }
         size--;
-        if (removeNode == removeNode.parent.left) {
-            removeNode.parent.left = null;
-            return;
+        TreeNode childNode = removeNode.left == null ? removeNode.right : removeNode.left;
+        //removeNode肯定度等于1或0
+        if (childNode == null) {//度为0
+            //根结点
+            if (removeNode.parent == null) {
+                root = null;
+            }
+            //叶子节点
+            if (removeNode.isLeftTree()) {
+                removeNode.parent.left = null;
+            } else {
+                removeNode.parent.right = null;
+            }
+        } else {
+            childNode.parent = removeNode.parent;
+            if (removeNode.parent == null) {
+                root = childNode;
+            } else if (removeNode.isLeftTree()) {
+                removeNode.parent.left = childNode;
+            } else {
+                removeNode.parent.right = childNode;
+            }
         }
-        if (removeNode == removeNode.parent.right) {
-            removeNode.parent.right = null;
-        }
+        removeLater(removeNode);
     }
 
     public boolean contains(E element) {
         return node(element) != null;
     }
 
-    public int compare(E e1, E e2) {
-        if ((Integer) e1 < (Integer) e2) {
-            return -1;
-        }
-        if ((Integer) e1 == (Integer) e2) {
-            return 0;
-        }
-        return 1;
-    }
-
     public void show() {
         TreeNodeShow.show(root);
-    }
-
-    private TreeNode<E> node(E element) {
-        TreeNode<E> currentNode = root;
-        while (currentNode != null) {
-            int compare = compare(element, currentNode.element);
-            if (compare == 0) {
-                return currentNode;
-            }
-            if (compare < 0) {
-                currentNode = currentNode.left;
-            } else {
-                currentNode = currentNode.right;
-            }
-        }
-        return null;
     }
 
     protected TreeNode<E> createNode(E element, TreeNode<E> parent) {
@@ -98,5 +94,8 @@ public class BinarySearchTree<E> extends BinaryTree<E> {
     }
 
     protected void addLater(TreeNode<E> element) {
+    }
+
+    protected void removeLater(TreeNode<E> element) {
     }
 }

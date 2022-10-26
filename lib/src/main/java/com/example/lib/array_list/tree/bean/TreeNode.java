@@ -50,4 +50,9 @@ public class TreeNode<E> {
     public String toString() {
         return element + "P" + parent.element;
     }
+
+    //是否是度为2的节点
+    public boolean hasTwoChild() {
+        return left != null && right != null;
+    }
 }

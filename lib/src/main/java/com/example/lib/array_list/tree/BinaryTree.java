@@ -186,4 +186,31 @@ public abstract class BinaryTree<E> {
         }
         return true;
     }
+
+    public TreeNode<E> node(E element) {
+        TreeNode<E> currentNode = root;
+        while (currentNode != null) {
+            int compare = compare(element, currentNode.element);
+            if (compare == 0) {
+                return currentNode;
+            }
+            if (compare < 0) {
+                currentNode = currentNode.left;
+            } else {
+                currentNode = currentNode.right;
+            }
+        }
+        return null;
+    }
+
+    public int compare(E e1, E e2) {
+        if ((Integer) e1 < (Integer) e2) {
+            return -1;
+        }
+        if ((Integer) e1 == (Integer) e2) {
+            return 0;
+        }
+        return 1;
+    }
+
 }

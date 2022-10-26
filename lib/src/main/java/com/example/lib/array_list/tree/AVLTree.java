@@ -27,6 +27,17 @@ public class AVLTree<E> extends BinarySearchTree<E> {
         }
     }
 
+    @Override
+    protected void removeLater(TreeNode<E> element) {
+        super.removeLater(element);
+        while ((element = element.parent) != null) {
+            if (isBalance(element)) {
+                upHeight(element);
+            } else {
+                replyHeight((AVLNode<E>) element);
+            }
+        }
+    }
 
     private void replyHeight(AVLNode<E> ground) {
         AVLNode parent = ground.tallerChild();

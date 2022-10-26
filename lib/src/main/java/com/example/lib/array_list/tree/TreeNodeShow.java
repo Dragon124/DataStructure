@@ -24,7 +24,7 @@ public class TreeNodeShow {
 //        if (currNode.parent != null) {
 //            parent += "_" + currNode.parent.element;
 //        }
-        parent += "_" + ((AVLNode)currNode).height;
+//        parent += "_" + ((AVLNode)currNode).height;
         res[rowIndex][columnIndex] = String.valueOf(currNode.element + parent);
 
         // 计算当前位于树的第几层
