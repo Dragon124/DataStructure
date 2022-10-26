@@ -3,7 +3,7 @@ package com.example.lib.array_list.tree;
 import com.example.lib.array_list.linked.LinkedList;
 import com.example.lib.array_list.queue.Queue;
 import com.example.lib.array_list.stack.Stack;
-import com.example.lib.array_list.tree.bean.TreeNode;
+import com.example.lib.array_list.test.TreeNode;
 
 /**
  * Created by K on 2022/10/25

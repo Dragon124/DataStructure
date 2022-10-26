@@ -23,6 +23,7 @@ public class BinarySearchTree<E> extends BinaryTree<E> {
             if (compare < 0) {
                 currentNode = currentNode.left;
             } else if (compare == 0) {
+                size--;
                 return;
             } else {
                 currentNode = currentNode.right;
@@ -31,9 +32,6 @@ public class BinarySearchTree<E> extends BinaryTree<E> {
         if (compare < 0) {
             parentNode.left = createNode(element, parentNode);
             addLater(parentNode.left);
-        } else if (compare == 0) {
-            size--;
-            parentNode.element = element;
         } else {
             parentNode.right = createNode(element, parentNode);
             addLater(parentNode.right);
@@ -86,7 +84,7 @@ public class BinarySearchTree<E> extends BinaryTree<E> {
     }
 
     public void show() {
-        TreeNodeShow.show(root);
+//        TreeNodeShow.show(root);
     }
 
     protected TreeNode<E> createNode(E element, TreeNode<E> parent) {

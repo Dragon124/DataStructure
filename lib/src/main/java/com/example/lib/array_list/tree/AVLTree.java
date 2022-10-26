@@ -68,7 +68,6 @@ public class AVLTree<E> extends BinarySearchTree<E> {
             ground.parent.right = parent;
         } else {
             root = parent;
-            parent.parent = null;
         }
 
         if (ground.right != null) {
