@@ -28,8 +28,7 @@ public class AVLTree<E> extends BinarySearchTree<E> {
     }
 
     @Override
-    protected void removeLater(TreeNode<E> element) {
-        super.removeLater(element);
+    protected void removeLater(TreeNode<E> element,TreeNode<E> replace) {
         while ((element = element.parent) != null) {
             if (isBalance(element)) {
                 upHeight(element);
@@ -56,7 +55,7 @@ public class AVLTree<E> extends BinarySearchTree<E> {
         }
     }
 
-    private void leftRotate(TreeNode<E> ground) {
+    public void leftRotate(TreeNode<E> ground) {
         TreeNode parent = ground.right;
         ground.right = parent.left;
         parent.left = ground;
@@ -80,7 +79,7 @@ public class AVLTree<E> extends BinarySearchTree<E> {
         upHeight(parent);
     }
 
-    private void rightRotate(TreeNode<E> ground) {
+    public void rightRotate(TreeNode<E> ground) {
         TreeNode parent = ground.left;
         ground.left = parent.right;
         parent.right = ground;

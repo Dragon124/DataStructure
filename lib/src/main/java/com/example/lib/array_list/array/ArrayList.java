@@ -9,6 +9,10 @@ import java.util.Arrays;
  * Created by K on 2022/10/12
  * function:动态数组
  * other:
+ * 添加复杂度O(n)
+ * 删除复杂度O(n)
+ * 修改复杂度O(1)
+ * 查询复杂度O(n)
  */
 public class ArrayList<E> implements IList<E> {
     public E[] elements;
@@ -61,7 +65,7 @@ public class ArrayList<E> implements IList<E> {
         checkRangeAdd(index);
         checkNull(element);
         for (int i = size; i > index; i--) {
-            elements[i] = elements[i-1];
+            elements[i] = elements[i - 1];
         }
         elements[index] = element;
         size++;
@@ -136,10 +140,6 @@ public class ArrayList<E> implements IList<E> {
 
     @Override
     public String toString() {
-        return "ArrayList{" +
-                "elements=" + Arrays.toString(elements) +
-                ", currentSize=" + size +
-                ", Size="+elements.length+
-                '}';
+        return Arrays.toString(elements);
     }
 }

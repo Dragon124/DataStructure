@@ -1,8 +1,8 @@
 package com.example.lib.array_list.tree;
 
 
-import com.example.lib.array_list.test.TreeNode;
-import com.example.lib.array_list.tree.bean.AVLNode;
+import com.example.lib.array_list.tree.bean.BRTreeNode;
+import com.example.lib.array_list.tree.bean.TreeNode;
 
 /**
  * Created by K on 2022/10/21
@@ -25,7 +25,7 @@ public class TreeNodeShow {
         if (currNode.parent != null) {
             parent += "_" + currNode.parent.element;
         }
-//        parent += "_" + ((TreeNode)currNode).height;
+//        parent += "_" + (((BRTreeNode)currNode).color?"红":"黑");
         res[rowIndex][columnIndex] = String.valueOf(currNode.element + parent);
 
         // 计算当前位于树的第几层

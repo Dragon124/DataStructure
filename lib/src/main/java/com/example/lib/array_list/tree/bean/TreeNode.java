@@ -55,4 +55,23 @@ public class TreeNode<E> {
     public boolean hasTwoChild() {
         return left != null && right != null;
     }
+
+    //获取兄弟节点
+    public TreeNode<E> sibling() {
+        if (isLeftTree()) {
+            return parent.right;
+        }
+        if (isRightTree()) {
+            return parent.left;
+        }
+        return null;
+    }
+
+    //获取叔父节点
+    public TreeNode<E> uncle() {
+        if (parent == null) {
+            return null;
+        }
+        return parent.sibling();
+    }
 }

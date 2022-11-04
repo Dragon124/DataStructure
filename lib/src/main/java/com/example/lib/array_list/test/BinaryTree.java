@@ -39,7 +39,7 @@ public class BinaryTree {
 
 
     public void show() {
-        TreeNodeShow.show(root);
+//        TreeNodeShow.show(root);
     }
 
 

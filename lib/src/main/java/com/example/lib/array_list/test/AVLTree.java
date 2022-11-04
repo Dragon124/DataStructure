@@ -93,6 +93,6 @@ public class AVLTree extends BinarySearchTree {
     }
 
     public void show(){
-        TreeNodeShow.show(root);
+//        TreeNodeShow.show(root);
     }
 }

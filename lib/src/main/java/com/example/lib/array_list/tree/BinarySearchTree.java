@@ -12,6 +12,7 @@ public class BinarySearchTree<E> extends BinaryTree<E> {
         size++;
         if (root == null) {
             root = createNode(element, null);
+            addLater(root);
             return;
         }
         TreeNode<E> currentNode = root;
@@ -76,7 +77,7 @@ public class BinarySearchTree<E> extends BinaryTree<E> {
                 removeNode.parent.right = childNode;
             }
         }
-        removeLater(removeNode);
+        removeLater(removeNode, childNode);
     }
 
     public boolean contains(E element) {
@@ -84,7 +85,7 @@ public class BinarySearchTree<E> extends BinaryTree<E> {
     }
 
     public void show() {
-//        TreeNodeShow.show(root);
+        TreeNodeShow.show(root);
     }
 
     protected TreeNode<E> createNode(E element, TreeNode<E> parent) {
@@ -94,6 +95,6 @@ public class BinarySearchTree<E> extends BinaryTree<E> {
     protected void addLater(TreeNode<E> element) {
     }
 
-    protected void removeLater(TreeNode<E> element) {
+    protected void removeLater(TreeNode<E> element, TreeNode<E> replace) {
     }
 }
